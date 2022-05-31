@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<%- include("../partials/imports.ejs") %>
+	</head>
+	<body>
+		<style>
+			.account:hover .form{
+				display: block;
+			}
+		</style>
+
+		<header class="shadow-md">
+			<nav class="w-[80%] m-auto py-5 flex justify-between items-center">
+				<div>
+					<a href="/">
+						<h1 class="text-2xl font-medium">OUR Library</h1>
+					</a>
+				</div>
+				<ul class="flex gap-5 items-center">
+					<li class="mr-5 hover:border-b-4 border-blue-600">
+						<a href="/mybooks" class="font-bold">My Books</a>
+					</li>
+
+					<li class="relative account">
+						<a href="" class="text-3xl">
+							<i class="fa-solid fa-user"></i>
+						</a>
+	
+						<% if (!user){ %>
+							<form action="/catelogue" method="POST" class="form border shadow-md p-4 absolute 			right-0 bg-white z-10 hidden overflow-hidden">
+								<div class="text-center text-blue-600">
+									<small>Welcome Back</small>
+								</div>
+								<div class="text-center text-3xl py-4 text-gray-600">
+									<i class="fa-solid fa-user"></i>
+								</div>
+		
+								<div class="py-2">
+									<input type="email" name="email" id="" placeholder="Email" class="border outline-none p-2" value="kev_hall@gmail.com">
+								</div>
+		
+								<div class="py-2">
+									<input type="password" name="password" id="" placeholder="password" class="border outline-none p-2" value="123pass">
+								</div>
+		
+								<div class="text-center">
+									<input type="submit" value="Login" class="px-4 py-2 bg-blue-600 text-white">
+								</div>
+							</form>
+						<% } %> 
+
+						<% if (user) {%>
+							<div class="form border shadow-md p-4 absolute right-0 bg-white z-10 hidden		overflow-hidden">
+								<a href="/logout/user/logout" class="text-white font-bold bg-blue-600 p-4">
+									Logout
+								</a>
+							</div>
+						<% } %> 
+					</li>
+
+					<li>
+						<% if(user){ %>
+							<b>Hi <%= user %> </b>
+						<% } %> 
+					</li>
+				</ul>
+			</nav>
+		</header>
+
+		<%- body %>
+	</body>
+</html>

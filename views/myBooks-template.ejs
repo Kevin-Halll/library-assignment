@@ -1,0 +1,46 @@
+<% if(myBooks.length > 0) { %>
+    <section class="mt-10">
+        <div  class="grid grid-cols-2 gap-8 w-1/2 m-auto">
+            <% myBooks.forEach((book) => { %>
+                <div class="hover:border hover:shadow-lg">
+                        <div>
+                            <img src="<%= book.book_cover %> " alt="" class="w-full h-[450px] border">
+                        </div>
+    
+                        <div class="px-4">
+                            <h1 class="text-xl text-center font-bold py-1"><%= book.book_title %> </h1>
+                            
+                            <div class="flex flex-col">
+                                <details>
+                                    <summary>Book Details</summary>
+                                    <p><%= book.book_description %></p>
+                                </details>
+                                <div>
+                                    <p>Publication Date: <b><%= book.published_dt %> </b></p>
+                                </div>
+                                
+                                <div>
+                                    <p>Copies Available: <b><%= book.book_qty %></b></p>
+                                </div>
+                            </div>
+                        </div>
+    
+                    <div class="text-center pt-5">
+                        <a href="return/<%= user_id %>/<%= book.book_id %>" class="p-4 font-bold bg-blue-600 text-white w-full block">
+                            Return This book
+                        </a>
+                    </div>
+                </div>
+            
+            <% }) %>  
+        </div>
+    </section>
+<% } %> 
+
+<% if(myBooks.length == 0 ) { %>
+    <section class="flex justify-center items-center h-[80vh]">
+        <h1 class="text-5xl font-bold text-blue-600">
+            You Have No Books Here
+        </h1>
+    </section>
+<% } %> 

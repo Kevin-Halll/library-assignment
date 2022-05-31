@@ -1,0 +1,43 @@
+<section class="heading mt-10 px-5 w-[80%] m-auto">
+    <h1 class="text-3xl font-bold text-blue-600 text-center">Library Dashboard</h1>
+    <br />
+    <div class="flex justify-center text-center">
+      <table class="border p-3">
+        <thead>
+          <th class="px-5 py-3 border">Name</th>
+          <th class="px-5 py-3 border">Email</th>
+          <th class="px-5 py-3 border">Book</th>
+          <th class="px-5 py-3 border">Borrowed Date</th>
+          <th class="px-5 py-3 border">Expected Rexturn Date</th>
+          <th class="px-5 py-3 border">Status</th>
+        </thead>
+  
+        <tbody>
+        <% data.forEach(function(record) { %>
+          <tr class="hover:shadow-md">
+            <td class="px-5 py-3 border"><%= record.fname %> <%= record.lname %> </td>
+            <td class="px-5 py-3 border"><%= record.email %></td>
+            <td class="px-5 py-3 border"><%= record.book_title %></td>
+            <td class="px-5 py-3 border"><%= record.borrowed_dt %></td>
+            <td class="px-5 py-3 border">
+              <%= record.expected_return_dt %>
+            </td>
+            <td class="px-5 py-3 border">
+               <% if(new Date().getTime() > new Date(record.expected_return_dt).getTime()){ %> 
+                <div class="font-bold text-red-600">
+                    Overdue!
+                </div>
+                <% }else { %>
+                    <div class="text-green-600 font-bold">
+                        Pending Return
+                    </div>
+                <% } %> 
+
+            </td>
+          </tr>
+        <% }) %>
+        </tbody>
+      </table>
+    </div>
+  </section>
+ 

@@ -1,0 +1,56 @@
+<section class="bg-blue-600 flex items-center justify-center h-full">
+    <h1 class="text-5xl text-yellow-200 p-10">Stony Hill Primary School Virtual Library</h1>
+</section>
+
+<div class="grid grid-cols-2 gap-4 w-[70%] m-auto">
+    <div>
+        <div class="mt-10">
+            <h1 class="text-3xl font-bold py-2">Learning Starts Here</h1>
+            <p class="text-2xl ">Lorem ipsum dolor sit amet consectetur, adipisicing elit. Nulla libero veritatis repellat minus dolorem unde, iusto eaque ratione, eius sapiente fugiat omnis similique aliquam, quas beatae atque esse facilis mollitia!</p>
+        </div>
+        <div class="mt-12">
+            <a href="/categories" class="font-bold p-4 bg-blue-600 text-white">
+                View Our Collections
+            </a>
+        </div>
+        <div class=" mt-10">
+            <a href="/registration" class="font-bold text-white p-4 bg-blue-600 block text-center">
+                Become A Member
+             </a>
+        </div>
+    </div>
+
+    <div>
+        <img src="/assets/images/undraw_Bookshelves_re_lxoy.png" alt="Library">
+    </div>
+</div>
+
+
+<div>
+    <% if (messages.error){ %>
+            <p class="flash w-fit shadow-lg"><%- messages.error %> </p>
+    <% } %> 
+</div>
+
+<style>
+    .flash{
+        background: rgb(245, 165, 165);
+        color: red;
+        padding: 10px;
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        animation: fadeOut ease 6s;
+        animation-iteration-count: 1;
+        animation-fill-mode: forwards;
+    }
+    @keyframes fadeOut {
+    0% {
+        opacity: 1;
+    }
+    100% {
+        opacity: 0;
+     }
+    }
+</style>

@@ -1,0 +1,22 @@
+<section>
+    <div class="relative">
+        <div class="w-[80%] m-auto p-5 border shadow-lg shadow-blue-50 mt-12">
+            <div>
+                <h1 class="text-5xl text-center font-bold py-8">Categories</h1>
+            </div>
+
+            <div class="grid grid-cols-3 gap-6 items-center p-1">
+                <% categories.slice(0, 3).forEach(cat => { %>   
+                <div class="text-center border shadow-sm shadow-blue-50 py-[100px] bg-white">
+                    <!-- <a href="/<%= cat.book_category %>/<%= cat.id %>  "> -->
+                    <a href="/books/<%= cat.id %>  ">
+                        <h2 class="text-4xl font-medium"><%= cat.book_category %> </h2>
+                        <b>231 Collections</b>
+                    </a>
+                </div>
+
+                <% }) %> 
+            </div>
+        </div>
+    </div>
+</section>

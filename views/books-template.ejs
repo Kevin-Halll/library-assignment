@@ -1,0 +1,98 @@
+<section class="pt-10">
+    <div>
+        <a href="/categories" class="font-bold text-white p-4 bg-blue-600">Categories</a>
+    </div>
+    
+    <div  class="grid grid-cols-2 gap-8 w-1/2 m-auto">
+        <% books.forEach((book) => { %>
+            <div class="hover:border hover:shadow-lg">
+                <% if(borrowed.findIndex((element)=> element.book_id == book.id) == -1 ){ %> 
+                    <div>
+                        <img src="<%= book.book_cover %> " alt="" class="w-full h-[450px] border">
+                    </div>
+                    <% }else { %>
+                        <div class="relative">
+                            <img src="<%= book.book_cover %> " alt="" class="w-full h-[450px] border fill-neutral-600">
+                            <div class="absolute w-full h-full top-0 left-0 flex justify-center items-center brightness-90 backdrop-blur-sm">
+                                <h1 class="text-3xl font-bold bg-blue-600 p-4 text-white">You Have this Book</h1>
+                            </div>
+                        </div>
+                    <% } %> 
+                    <div class="px-4">
+                        <h1 class="text-xl text-center font-bold py-1"><%= book.book_title %> </h1>
+                        
+                        <div class="flex flex-col">
+                            <details>
+                                <summary>Book Details</summary>
+                                <p><%= book.book_description %></p>
+                            </details>
+                            <div>
+                                <p>Publication Date: <b><%= book.published_dt %> </b></p>
+                            </div>
+                            
+                            <div>
+                                <p>Copies Available: <b><%= book.book_qty %></b></p>
+                            </div>
+                        </div>
+                    </div>
+                <div class="text-center pt-5">
+                    <form action="/borrow/book" method="POST">
+                        <input type="text" name="user_id" id="" value="<%= user_id %>" hidden>
+                        <input type="text" name="book_id" id="" value="<%= book.id %>" hidden>
+                        <input type="date" name="borrowed_dt" id="borrowed_dt" value="<%= new Date().toJSON().slice(0, 10).split('-').join('-') %>" hidden>
+                        <input type="date" name="expected_return_dt" id="expected_return_dt" value="<%= new Date(Date.now() + 12096e5).toJSON().slice(0, 10).split('-').join('-') %>" hidden>
+                        
+                        <% if(borrowed.findIndex((element)=> element.book_id == book.id) == -1 ){ %>
+                        
+                            <% if(book.book_qty > 1) {%> 
+                            <button type="submit" class="p-4 font-bold bg-blue-600 text-white w-full">
+                                Borrow This book
+                            </button>
+                            <% } %> 
+
+                            <% if(book.book_qty <= 1){ %> 
+                                <div class="p-4 font-bold bg-red-400 text-white w-full">
+                                    No More Copies Available 
+                                </div>
+                            <% } %> 
+                        <% } else { %>
+                            <a href="/mybooks" class="p-4 font-bold bg-blue-600 text-white w-full block">
+                                View Your Books
+                            </a>
+                        <% } %> 
+                    </form>
+                </div>
+            </div>
+        
+        <% }) %>  
+    </div>
+
+    <div>
+        <% if (messages.success){ %>
+                <p class="flash w-fit shadow-lg font-bold text-4xl"><%- messages.success %> </p>
+        <% } %> 
+    </div>
+    
+    <style>
+        .flash{
+            background: rgb(165, 245, 190);
+            color: green;
+            padding: 10px;
+            position: absolute;
+            top: 30%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            animation: fadeOut ease 6s;
+            animation-iteration-count: 1;
+            animation-fill-mode: forwards;
+        }
+        @keyframes fadeOut {
+        0% {
+            opacity: 1;
+        }
+        100% {
+            opacity: 0;
+         }
+        }
+    </style>
+</section>
